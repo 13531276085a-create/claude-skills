@@ -67,12 +67,6 @@ cp -r claude-skills/mao-stock-analysis ~/.claude/skills/
 
 ---
 
-## 关于作者
-
-> 花叔，把《毛选》当方法论工具书读的人。
->
-> Twitter/X: [@AlchainHust](https://x.com/AlchainHust)
-
 ---
 
 <p align="center">
