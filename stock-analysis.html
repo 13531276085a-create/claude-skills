@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛选炒股 · 六步选股框架 — 紫金矿业 & 株冶集团</title>
+<style>
+  :root {
+    --bg: #faf8fc;
+    --card: #ffffff;
+    --border: #e0d6f0;
+    --text: #2d2040;
+    --muted: #7a6b8e;
+    --accent: #7c3aed;
+    --accent-light: #ede9fe;
+    --pass: #10b981;
+    --fail: #ef4444;
+    --warn: #f59e0b;
+    --gold: #b8860b;
+    --copper: #c2714f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 24px 16px;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 48px;
+    background: linear-gradient(135deg, #ede9fe 0%, #f5f0ff 40%, #faf8fc 100%);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1030;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Sections */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 36px 32px;
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1030;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  /* Framework flow */
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .flow-item {
+    background: var(--accent-light);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    border: 1px solid #ddd0f0;
+  }
+  .flow-item strong { display: block; font-size: 14px; margin-bottom: 4px; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #f5f0ff;
+    color: var(--accent);
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* Pass/Fail badges */
+  .pass { color: var(--pass); font-weight: 700; }
+  .fail { color: var(--fail); font-weight: 700; }
+  .warn { color: var(--warn); font-weight: 700; }
+
+  /* Score */
+  .score-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: #e5e0f0;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .score-fill { height: 100%; border-radius: 4px; }
+  .score-fill.high { background: var(--pass); }
+  .score-fill.mid { background: var(--warn); }
+  .score-fill.low { background: var(--fail); }
+
+  /* Cards */
+  .stock-card {
+    background: linear-gradient(135deg, #faf8fc, #f5f0ff);
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 28px;
+    margin: 20px 0;
+  }
+  .stock-card h3 {
+    font-size: 22px;
+    color: #1a1030;
+    margin-bottom: 4px;
+  }
+  .stock-card .tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+
+  /* Highlight box */
+  .highlight {
+    background: #fef9e7;
+    border-left: 3px solid var(--warn);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #7a5d00;
+  }
+
+  .insight {
+    background: #e8f5e9;
+    border-left: 3px solid var(--pass);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #1b5e20;
+  }
+
+  /* Grids */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+  .stat-box {
+    background: #f5f0ff;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-box .value { font-size: 24px; font-weight: 800; color: var(--accent); }
+  .stat-box .label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .final-conclusion {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #fff;
+    border-radius: 16px;
+    padding: 36px;
+    text-align: center;
+    margin: 32px 0;
+  }
+  .final-conclusion h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .final-conclusion p {
+    font-size: 15px;
+    opacity: 0.9;
+    line-height: 1.8;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 32px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    .flow { grid-template-columns: 1fr 1fr; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .section { padding: 24px 18px; }
+    .hero h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">毛选炒股 · 六步框架</div>
+    <h1>5000 只股票，筛到最后两只</h1>
+    <p>可回测的放过，不可回测的靠后；硬指标一票否决，软判断放最后参考。</p>
+  </div>
+
+  <!-- 框架概览 -->
+  <div class="section">
+    <div class="section-title"><span class="num">框</span> 六步选股框架</div>
+    <div class="flow">
+      <div class="flow-item"><strong>第零步</strong>量化初筛<br>ROE · 现金流 · PE</div>
+      <div class="flow-item"><strong>第一步</strong>QFII验证<br>四维打分 · 50分过关</div>
+      <div class="flow-item"><strong>第二步</strong>第一性原理<br>赛道 · 需求 · 格局</div>
+      <div class="flow-item"><strong>第三步</strong>矛盾论<br>主要矛盾 · 转化条件</div>
+      <div class="flow-item"><strong>第四步</strong>持久战<br>阶段判定 · 仓位管理</div>
+      <div class="flow-item"><strong>第五步</strong>实践论<br>交易记录 · 季度审计</div>
+    </div>
+  </div>
+
+  <!-- 筛选过程 -->
+  <div class="section">
+    <div class="section-title"><span class="num">筛</span> 第零步淘汰榜</div>
+    <table>
+      <tr><th>股票</th><th>ROE</th><th>现金流 > 净利</th><th>PE</th><th>判定</th></tr>
+      <tr><td>云汉芯城（301563）</td><td class="fail">4.16% ✗</td><td class="fail">-1.91亿 << 5162万 ✗</td><td class="fail">142x ✗</td><td class="fail">全挂</td></tr>
+      <tr><td>铭普光磁（002902）</td><td class="fail">亏损 ✗</td><td class="fail">-6267万 ✗</td><td class="fail">亏损 ✗</td><td class="fail">全挂</td></tr>
+      <tr><td>中稀有色（600259）</td><td class="fail">5% ✗</td><td class="fail">-4.27亿 << 1.71亿 ✗</td><td class="fail">125x ✗</td><td class="fail">全挂</td></tr>
+      <tr><td>天齐锂业（002466）</td><td class="warn">年化17% ⚠</td><td class="fail">2.59亿 << 18.76亿 ✗</td><td class="warn">15.8x ⚠</td><td class="fail">不通过</td></tr>
+      <tr><td>天孚通信（300394）</td><td class="fail">8.57% ✗</td><td class="warn">—</td><td class="fail">60-80x ✗</td><td class="fail">不通过</td></tr>
+      <tr><td>万华化学（600309）</td><td class="fail">年化13.5% ✗</td><td class="pass">69亿 > 37亿 ✓</td><td class="pass">21x ✓</td><td class="fail">不通过</td></tr>
+      <tr><td>盛屯矿业（600711）</td><td class="pass">年化24% ✓</td><td class="fail">8.2亿 < 10.2亿 ✗</td><td class="pass">9x ✓</td><td class="fail">不通过</td></tr>
+      <tr><td>豪威集团（603501）</td><td class="fail">1.56% ✗</td><td class="pass">7.4亿 > 5.0亿 ✓</td><td class="warn">—</td><td class="fail">不通过</td></tr>
+    </table>
+    <div class="highlight">
+      <strong>八只全挂。</strong>有的死在ROE上，有的死在现金流上，有的两样都死。5000只A股里，QFII池层层筛下来，硬指标全过的——只有两只。
+    </div>
+  </div>
+
+  <!-- 第零步过关榜 -->
+  <div class="section">
+    <div class="section-title"><span class="num">✓</span> 第零步全过：仅两只</div>
+    <table>
+      <tr><th></th><th>紫金矿业（601899）</th><th>株冶集团（600961）</th></tr>
+      <tr><td>ROE</td><td class="pass">33%（2025全年）</td><td class="pass">25.3%（Q1年化）</td></tr>
+      <tr><td>经营现金流 vs 净利</td><td class="pass">278亿 > 200亿（139%）</td><td class="pass">15.2亿 > 11.4亿（133%）</td></tr>
+      <tr><td>PE</td><td class="pass">9.8x</td><td class="pass">5.7x</td></tr>
+      <tr><td>QFII</td><td>阿布扎比新进 46 亿</td><td>华泰 Q1 加仓 52%</td></tr>
+    </table>
+  </div>
+
+  <!-- 紫金矿业 -->
+  <div class="stock-card">
+    <h3>🥇 紫金矿业 <span class="tag">主仓</span></h3>
+    <p style="color:var(--muted);font-size:14px;margin:6px 0 16px;">601899 · 铜金全球龙头 · 市值 7879 亿</p>
+
+    <div class="grid-3">
+      <div class="stat-box"><div class="value">200亿</div><div class="label">Q1 净利润（+97.5%）</div></div>
+      <div class="stat-box"><div class="value">278亿</div><div class="label">Q1 经营现金流</div></div>
+      <div class="stat-box"><div class="value">9.8x</div><div class="label">动态市盈率</div></div>
+    </div>
+
+    <div class="insight" style="margin-top:20px;">
+      <strong>第一性原理：</strong>铜是电气化的血液。AI 数据中心 + 电网投资 + 新能源车三重需求。全球铜矿供给增速接近零。供需缺口 24 万吨。紫金是全球前十铜矿企业，矿山毛利率 71%。
+    </div>
+
+    <p style="margin-top:16px;font-size:14px;"><strong>主要矛盾：</strong>铜矿供给极端紧缺 vs 市场短期情绪悲观（主力流出、北向减仓）。PE 9.8x 定价的是"铜价要跌"，而不是"铜价在涨"。<br>
+    <strong>仓位建议：</strong>20%（4万）。等北向转买 + 铜价站上 11 万后再加。<br>
+    <strong>翻倍难度：</strong>高。市值 7879 亿翻倍需要铜价史诗级暴涨。</p>
+  </div>
+
+  <!-- 株冶集团 -->
+  <div class="stock-card">
+    <h3>🥈 株冶集团 <span class="tag">弹性仓</span></h3>
+    <p style="color:var(--muted);font-size:14px;margin:6px 0 16px;">600961 · 铅锌冶炼 + 贵金属 · 市值 262 亿</p>
+
+    <div class="grid-3">
+      <div class="stat-box"><div class="value">11.4亿</div><div class="label">Q1 净利润（+313%）</div></div>
+      <div class="stat-box"><div class="value">5.7x</div><div class="label">动态市盈率</div></div>
+      <div class="stat-box"><div class="value">49%</div><div class="label">金银毛利占比</div></div>
+    </div>
+
+    <div class="insight" style="margin-top:20px;">
+      <strong>第一性原理：</strong>表面是铅锌冶炼股（毛利率不到5%），本质是贵金属矿企（金银贡献49%毛利）。金品位 3.24g/t，银品位 106.6g/t——国内顶级。中国五矿旗下。PE 5.73x 是因为市场还在按铅锌冶炼给它定价。
+    </div>
+
+    <!-- 翻倍三条路 -->
+    <table style="margin-top:20px;">
+      <tr><th>路径</th><th>条件</th><th>概率</th><th>说明</th></tr>
+      <tr>
+        <td><strong>PE 重估</strong></td>
+        <td>PE 5.73 → 12x</td>
+        <td class="warn">中</td>
+        <td style="font-size:13px">市场发现它是贵金属股不是铅锌股。不需要多赚一分钱。但需要市场觉醒——时间不确定。</td>
+      </tr>
+      <tr>
+        <td><strong>利润增长</strong></td>
+        <td>全年 50 亿 + PE 10x</td>
+        <td class="pass">高</td>
+        <td style="font-size:13px">Q1 已 11.44 亿。金银价格维持，全年 48-50 亿可期。最扎实的路径。</td>
+      </tr>
+      <tr>
+        <td><strong>资产注入</strong></td>
+        <td>五矿装入锡矿山（锑）</td>
+        <td class="warn">低</td>
+        <td style="font-size:13px">央企节奏不可预测。不来不亏，来了血赚。白送的期权。</td>
+      </tr>
+    </table>
+
+    <div class="highlight">
+      <strong>三条路不互斥——可以同时发生。PE 重估 + 利润增长一起兑现，翻倍就不是翻一倍的问题。</strong>
+    </div>
+
+    <p style="margin-top:16px;font-size:14px;"><strong>主要矛盾：</strong>金银贡献一半利润 vs 市场仍按铅锌冶炼定价（PE 5.73x）。估值错配就是机会。<br>
+    <strong>仓位建议：</strong>20-25%（4-5万）。跌破 22 元止损。<br>
+    <strong>翻倍难度：</strong>低。262 亿翻到 524 亿，PE 从 5.73 回归到 10-12 倍 + 利润 40-50 亿即可。</p>
+  </div>
+
+  <!-- 最终结论 -->
+  <div class="final-conclusion">
+    <h2>最终配置方案</h2>
+    <p style="margin-bottom:16px;">
+      5000 只 A 股 → QFII 池层层筛选 → 硬指标全过 → <strong>只剩两只</strong>
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center;margin:24px 0;">
+      <div>
+        <div style="font-size:14px;opacity:0.8;">主仓 · 紫金矿业</div>
+        <div style="font-size:28px;font-weight:800;">4 万</div>
+        <div style="font-size:12px;opacity:0.7;">铜金龙头，稳如泰山</div>
+      </div>
+      <div>
+        <div style="font-size:14px;opacity:0.8;">弹性仓 · 株冶集团</div>
+        <div style="font-size:28px;font-weight:800;">4 万</div>
+        <div style="font-size:12px;opacity:0.7;">金银驱动，翻倍可期</div>
+      </div>
+    </div>
+    <p style="font-size:14px;opacity:0.8;">
+      总仓位 40%（8 万 / 20 万）<br>
+      剩余 12 万现金待命。等 Q2 验证 / 等回调加仓 / 等新标的通过框架。
+    </p>
+  </div>
+
+  <!-- 关键区别 -->
+  <div class="section">
+    <div class="section-title"><span class="num">对</span> 两只对比速查</div>
+    <table>
+      <tr><th>维度</th><th>紫金矿业</th><th>株冶集团</th></tr>
+      <tr><td>市值</td><td>7,879 亿</td><td>262 亿</td></tr>
+      <tr><td>Q1 利润增速</td><td>+97.5%</td><td>+313%</td></tr>
+      <tr><td>PE</td><td>9.8x</td><td>5.7x</td></tr>
+      <tr><td>现金流/利润</td><td>139%</td><td>133%</td></tr>
+      <tr><td>ROE</td><td>33%</td><td>25.3%</td></tr>
+      <tr><td>赚钱靠什么</td><td>铜（71%矿山毛利）</td><td>金银（49%毛利）</td></tr>
+      <tr><td>翻倍需要</td><td>铜价史诗级暴涨，或利润翻倍</td><td>PE 回归 10-12x + 利润 50 亿</td></tr>
+      <tr><td>翻倍难度</td><td class="warn">高</td><td class="pass">中</td></tr>
+      <tr><td>最大风险</td><td>铜价跌 + 全球衰退</td><td>金银跌 + 市场永远不给改标签</td></tr>
+      <tr><td>角色</td><td>主仓：睡得着</td><td>弹性仓：飙得快</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    毛选炒股 · 六步选股框架<br>
+    实事求是 · 矛盾分析 · 持久战<br>
+    <span style="color:#c0b0d0;">可回测的放前面，不可回测的放后面</span>
+  </div>
+
+</div>
+
+</body>
+</html>
