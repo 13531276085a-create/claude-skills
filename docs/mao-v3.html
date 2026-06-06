@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛式作战体系 v3.0 · 分析战场就是分析股票</title>
+
+<meta property="og:title" content="毛式作战体系 v3.0 · 分析战场就是分析股票">
+<meta property="og:description" content="六条作战原则 · 三红线风控 · 十步作战流程 · 卖出三纪律。把毛选变成可操作的股票作战指挥系统。">
+<meta property="og:image" content="https://opengraph.githubassets.com/1/13531276085a-create/claude-skills">
+<meta property="og:url" content="https://13531276085a-create.github.io/claude-skills/mao-v3.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="毛式作战体系">
+<meta property="og:locale" content="zh_CN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="毛式作战体系 v3.0 · 分析战场就是分析股票">
+<meta name="twitter:description" content="六条作战原则 · 三红线风控 · 十步作战流程 · 卖出三纪律。">
+
+<style>
+  :root {
+    --bg: #faf8fc; --card: #ffffff; --border: #e0d6f0;
+    --text: #2d2040; --muted: #7a6b8e; --accent: #7c3aed; --accent-light: #ede9fe;
+    --pass: #10b981; --warn: #f59e0b; --fail: #ef4444;
+  }
+  * { margin:0;padding:0;box-sizing:border-box }
+  body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background: var(--bg); color: var(--text); line-height:1.8; padding:16px;
+  }
+  .container { max-width:640px; margin:0 auto }
+
+  .hero {
+    text-align:center; padding:48px 24px 36px;
+    background: linear-gradient(160deg, #ede9fe 0%, #f5f0ff 30%, #faf8fc 100%);
+    border-radius:20px; margin-bottom:24px; border:1px solid var(--border);
+  }
+  .hero-badge {
+    display:inline-block; background:var(--accent); color:#fff;
+    font-size:12px; font-weight:700; padding:4px 14px; border-radius:20px;
+    letter-spacing:2px; margin-bottom:16px;
+  }
+  .hero h1 { font-size:28px; font-weight:900; color:#1a1030; letter-spacing:1px; margin-bottom:8px }
+  .hero .sub { font-size:15px; color:var(--muted); margin-bottom:20px; line-height:1.7 }
+  .hero .tagline {
+    display:inline-block; font-size:18px; font-weight:800; color:var(--accent);
+    background:var(--accent-light); padding:6px 20px; border-radius:8px; margin-top:4px;
+  }
+
+  .card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:28px 24px; margin-bottom:18px;
+  }
+  .card h2 {
+    font-size:18px; font-weight:800; color:#1a1030; margin-bottom:16px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .card h2 .icon { font-size:22px }
+
+  .principles { display:grid; grid-template-columns:1fr 1fr; gap:10px }
+  .principle {
+    background:var(--accent-light); border-radius:10px; padding:14px;
+    border:1px solid #ddd0f0; text-align:center;
+  }
+  .principle .num { font-size:24px; font-weight:900; color:var(--accent) }
+  .principle .title { font-size:14px; font-weight:700; color:#1a1030; margin:4px 0 }
+  .principle .desc { font-size:12px; color:var(--muted); line-height:1.6 }
+
+  .flow-line {
+    text-align:center; font-size:13px; color:var(--accent); font-weight:700;
+    padding:10px; letter-spacing:1px; background:var(--accent-light);
+    border-radius:8px; margin:12px 0;
+  }
+
+  .rule-row {
+    display:flex; align-items:flex-start; gap:12px; padding:12px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .rule-row:last-child { border-bottom:none }
+  .rule-num {
+    width:28px;height:28px;border-radius:50%;background:var(--accent);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;flex-shrink:0;
+  }
+  .rule-num.red { background:var(--fail) }
+  .rule-text strong { display:block; font-size:14px; margin-bottom:2px }
+  .rule-text span { font-size:13px; color:var(--muted) }
+
+  .stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px }
+  .stat {
+    text-align:center; background:var(--accent-light); border-radius:10px; padding:16px 8px;
+  }
+  .stat .val { font-size:26px; font-weight:900; color:var(--accent) }
+  .stat .lbl { font-size:11px; color:var(--muted); margin-top:2px }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9); color:#fff;
+    border-radius:14px; padding:28px 24px; text-align:center; margin:20px 0;
+  }
+  .highlight-box h3 { font-size:20px; font-weight:800; margin-bottom:8px }
+  .highlight-box p { font-size:14px; opacity:.9; line-height:1.8 }
+
+  .cta {
+    display:block; text-align:center; background:var(--accent); color:#fff;
+    padding:14px 32px; border-radius:10px; text-decoration:none;
+    font-size:16px; font-weight:700; letter-spacing:1px; margin:24px 0;
+  }
+
+  .footer { text-align:center; padding:20px; color:#c0b0d0; font-size:12px; letter-spacing:2px }
+
+  @media (max-width:480px) {
+    .principles { grid-template-columns:1fr }
+    .stats { grid-template-columns:1fr 1fr 1fr }
+    .hero h1 { font-size:22px }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-badge">MAO-STOCK V3.0</div>
+    <h1>分析战场<br>就是分析股票</h1>
+    <p class="sub">知己知彼 → 天时判定 → 根据地深耕<br>量化初筛 → 同行对比 → QFII验证<br>赛道验证 → 矛盾论 → 持久战<br>卖出纪律 → 实践论反馈</p>
+    <div class="tagline">毛式作战体系</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon"></span> 六条作战原则</h2>
+    <div class="principles">
+      <div class="principle">
+        <div class="num">1</div>
+        <div class="title">知己知彼</div>
+        <div class="desc">开仓前先审自己：资金性质、回撤承受、行业认知</div>
+      </div>
+      <div class="principle">
+        <div class="num">2</div>
+        <div class="title">地形决定战术</div>
+        <div class="desc">沪深300年线？成交额8000亿？北向在买？</div>
+      </div>
+      <div class="principle">
+        <div class="num">3</div>
+        <div class="title">根据地深耕</div>
+        <div class="desc">选定1-2个行业反复作战，重仓不出根据地</div>
+      </div>
+      <div class="principle">
+        <div class="num">4</div>
+        <div class="title">打法选择</div>
+        <div class="desc">阵地战(1-3年) vs 运动战(1-3月)，规则不同</div>
+      </div>
+      <div class="principle">
+        <div class="num">5</div>
+        <div class="title">歼灭战</div>
+        <div class="desc">集中兵力，不撒胡椒面。伤其十指不如断其一指</div>
+      </div>
+      <div class="principle">
+        <div class="num">6</div>
+        <div class="title">主动权</div>
+        <div class="desc">你选的时机还是市场逼你？被逼=不开仓</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon"></span> 三红线风控</h2>
+    <div class="rule-row">
+      <div class="rule-num red">1</div>
+      <div class="rule-text"><strong>不借钱炒股</strong><span>必须是闲钱——输光了不影响生活</span></div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-num red">2</div>
+      <div class="rule-text"><strong>不懂不重仓</strong><span>根据地之外仓位砍半。根据地之内才能放手</span></div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-num red">3</div>
+      <div class="rule-text"><strong>不追热点</strong><span>当同事都在聊这只股票——信息优势已经没了</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon"></span> 十步作战流程</h2>
+    <div class="flow-line">风控红线 → 知己审计 → 天时判定 → 根据地检查</div>
+    <div class="flow-line">分类+量化（周期/成长/价值）→ 张新民三问（利润/资产/资本）→ 同行横向对比</div>
+    <div class="flow-line">QFII多信号+对手方分析 → 第一性原理赛道验证</div>
+    <div class="flow-line">矛盾论判时机（转化条件绑时间轴）→ 持久战仓位（波动率打折+相关性检查）</div>
+    <div class="flow-line">卖出三纪律（止损/移动止盈/逻辑证伪）→ 实践论反馈闭环</div>
+    <div class="flow-line" style="background:var(--accent);color:#fff">→ 输出浅紫色 HTML 分析报告</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon"></span> 卖出三纪律</h2>
+    <div class="rule-row">
+      <div class="rule-num">1</div>
+      <div class="rule-text"><strong>止损卖出</strong><span>阵地战标的：成本下方15-20%。运动战标的：成本下方5-8%。到了就卖，不犹豫</span></div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-num">2</div>
+      <div class="rule-text"><strong>移动止盈</strong><span>浮盈15-30%：设10%回撤线。浮盈>50%：先卖一半锁利</span></div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-num">3</div>
+      <div class="rule-text"><strong>逻辑证伪即走</strong><span>买入时写的那个核心假设被证伪——不管盈亏，清仓</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon"></span> 能力一览</h2>
+    <div class="stats">
+      <div class="stat"><div class="val">6</div><div class="lbl">作战原则</div></div>
+      <div class="stat"><div class="val">3</div><div class="lbl">风控红线</div></div>
+      <div class="stat"><div class="val">10</div><div class="lbl">作战步骤</div></div>
+      <div class="stat"><div class="val">3</div><div class="lbl">卖出纪律</div></div>
+      <div class="stat"><div class="val">周期/成长/价值</div><div class="lbl">分类体系</div></div>
+      <div class="stat"><div class="val">波动率</div><div class="lbl">仓位打折</div></div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>v3.0 vs v1.0</h3>
+    <p>
+      v1.0 是一套选股 checklist<br>
+      v3.0 是一套完整的作战指挥系统<br><br>
+      六个毛式作战原则注入灵魂<br>
+      十个致命缺陷全部修复<br>
+      分析战场，就是分析股票
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon"></span> 怎么用</h2>
+    <div class="rule-row">
+      <div class="rule-num">1</div>
+      <div class="rule-text"><strong>装到 Claude Code</strong><span>git clone + cp 到 ~/.claude/skills/</span></div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-num">2</div>
+      <div class="rule-text"><strong>直接说触发词</strong><span>「从矛盾论角度看紫金矿业」「持久战视角看大盘」</span></div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-num">3</div>
+      <div class="rule-text"><strong>自动跑完全流程</strong><span>搜索数据 → 十步分析 → 输出 HTML 报告</span></div>
+    </div>
+  </div>
+
+  <a class="cta" href="https://github.com/13531276085a-create/claude-skills">GitHub 仓库 · 免费安装 →</a>
+
+  <div class="footer">
+    实事求是 · 矛盾分析 · 持久战 · 歼灭战<br>
+    <span style="color:#c0b0d0">毛式作战体系 v3.0 · 分析战场就是分析股票</span>
+  </div>
+
+</div>
+</body>
+</html>
