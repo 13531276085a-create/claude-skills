@@ -6,9 +6,7 @@
 
 ## 投资决策系统
 
-### [mao-stock-analysis](./mao-stock-analysis/) —— 毛式作战体系 v3.x
 
-**独立仓库**：[mao-stock-analysis](https://github.com/13531276085a-create/mao-stock-analysis)
 
 分析一只股票和分析一场战争，底层逻辑是同一件事。这个 Skill 把《实践论》《矛盾论》《论持久战》《反对本本主义》的精华变成一套可操作的股票分析作战指挥系统。
 
@@ -154,11 +152,8 @@ git clone https://github.com/13531276085a-create/claude-skills.git
 cp -r claude-skills/* ~/.claude/skills/
 ```
 
-单个 skill 独立安装（以 mao-stock-analysis 为例）：
 
 ```bash
-git clone https://github.com/13531276085a-create/mao-stock-analysis.git
-cp -r mao-stock-analysis ~/.claude/skills/
 ```
 
 ---
@@ -184,6 +179,5 @@ cp -r mao-stock-analysis ~/.claude/skills/
 
 | Skill | 最新版本 | 核心特性 |
 |------|:--:|------|
-| mao-stock-analysis | v3.x | 九原则+十四步流程+李雨青均线+张新民财务+HTML报告 |
 | mao-zedong-perspective | v1.0 | 毛式表达DNA+矛盾论+持久战思维 |
 | mingli | v1.0 | 紫微+八字+印占三维交叉验证 |
